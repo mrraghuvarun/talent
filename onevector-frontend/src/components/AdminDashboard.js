@@ -23,7 +23,7 @@ const [magicLinks, setMagicLinks] = useState([]);
     }, []);
     const fetchMagicLinks = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/magic-links');
+            const response = await axios.get('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/magic-links');
             setMagicLinks(response.data);
             setShowHistoryPopup(true);
         } catch (error) {
@@ -37,7 +37,7 @@ const [magicLinks, setMagicLinks] = useState([]);
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get('http://localhost:3000/api/candidates');
+            const response = await axios.get('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/candidates');
             // Filter candidates for 'power_user' and 'user' roles
             const filteredCandidates = response.data.filter(candidate => 
                 candidate.role === 'power_user' || candidate.role === 'user'
@@ -65,7 +65,7 @@ const [magicLinks, setMagicLinks] = useState([]);
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3000/api/send-magic-link', { email });
+            await axios.post('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/send-magic-link', { email });
             alert('Magic link sent successfully');
             setEmail('');
             setShowForm(false);
@@ -85,15 +85,15 @@ const [magicLinks, setMagicLinks] = useState([]);
         if (window.confirm('Are you sure you want to delete this candidate? This will also delete their personal details, qualifications, skills, and certifications.')) {
             try {
                 // First delete the qualifications
-                await axios.delete(`http://localhost:3000/api/qualifications/${id}`);
+                await axios.delete(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/qualifications/${id}`);
                 // Then delete the user skills
-                await axios.delete(`http://localhost:3000/api/user_skills/${id}`);
+                await axios.delete(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/user_skills/${id}`);
                 // Then delete the user certifications
-                await axios.delete(`http://localhost:3000/api/user_certifications/${id}`);
+                await axios.delete(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/user_certifications/${id}`);
                 // Then delete the personal details
-                await axios.delete(`http://localhost:3000/api/personaldetails/${id}`);
+                await axios.delete(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/personaldetails/${id}`);
                 // Finally delete the user
-                await axios.delete(`http://localhost:3000/api/candidates/${id}`);
+                await axios.delete(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/candidates/${id}`);
                 
                 setCandidates(candidates.filter((candidate) => candidate.id !== id));
                 alert('Candidate and all associated data deleted successfully');
@@ -107,7 +107,7 @@ const [magicLinks, setMagicLinks] = useState([]);
     const handleMakePowerUser   = async (id) => {
         if (window.confirm('Are you sure you want to promote this user to Power User?')) {
             try {
-                await axios.put(`http://localhost:3000/api/candidates/${id}/role`, { role: 'power_user' });
+                await axios.put(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/candidates/${id}/role`, { role: 'power_user' });
                 alert('User  promoted to Power User successfully');
                 fetchCandidates();
             } catch {
@@ -119,7 +119,7 @@ const [magicLinks, setMagicLinks] = useState([]);
     const handleRemovePowerUser   = async (id) => {
         if (window.confirm('Are you sure you want to remove this Power User?')) {
             try {
-                await axios.put(`http://localhost:3000/api/candidates/${id}/role`, { role: 'user' });
+                await axios.put(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/candidates/${id}/role`, { role: 'user' });
                 alert('Power User removed successfully');
                 fetchCandidates();
             } catch {

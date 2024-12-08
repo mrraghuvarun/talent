@@ -17,7 +17,7 @@ function Login() {
 
     try {
       // Send login request to the backend
-      const response = await axios.post('http://localhost:3000/api/login', { email, password });
+      const response = await axios.post('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/login', { email, password });
 
       if (response.status === 200) {
         const userData = response.data.user;

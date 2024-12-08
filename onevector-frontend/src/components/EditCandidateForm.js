@@ -38,7 +38,7 @@ function EditCandidateForm({ candidate, onClose, onUpdate }) {
         console.log(`Updating candidate with ID: ${candidate.id}`); // Debugging statement
 
         try {
-            await axios.put(`http://localhost:3000/api/candidates/${candidate.id}`, formData, {
+            await axios.put(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/candidates/${candidate.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

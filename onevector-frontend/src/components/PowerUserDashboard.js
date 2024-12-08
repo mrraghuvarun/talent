@@ -22,7 +22,7 @@ function PowerUserDashboard() {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get('http://localhost:3000/api/candidates');
+            const response = await axios.get('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/candidates');
             setCandidates(response.data);
         } catch (error) {
             setError('Failed to fetch candidates');
@@ -34,7 +34,7 @@ function PowerUserDashboard() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3000/api/send-magic-link', { email });
+            await axios.post('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/send-magic-link', { email });
             alert('Magic link sent successfully');
             setEmail('');
             setShowForm(false);
@@ -53,7 +53,7 @@ function PowerUserDashboard() {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this candidate?')) {
             try {
-                await axios.delete(`http://localhost:3000/api/candidates/${id}`);
+                await axios.delete(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/candidates/${id}`);
                 setCandidates(candidates.filter((candidate) => candidate.id !== id));
                 alert('Candidate deleted successfully');
             } catch {

@@ -23,7 +23,7 @@ function UserDashboard() {
             }
 
             try {
-                const response = await axios.get(`http://localhost:3000/api/user/info/email`, { params: { email } });
+                const response = await axios.get(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/user/info/email`, { params: { email } });
                 setUserInfo(response.data);
             } catch (error) {
                 console.error('Error fetching user info:', error);
@@ -68,7 +68,7 @@ function UserDashboard() {
                         <p className="text-gray-700 mb-4">
                             <strong>Resume:</strong>
                             <a
-                                href={`http://localhost:3000/${userInfo.resume_path}`}
+                                href={`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/${userInfo.resume_path}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-blue-500 underline ml-1"

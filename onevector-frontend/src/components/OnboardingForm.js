@@ -44,10 +44,10 @@ const OnboardingForm = () => {
     useEffect(() => {
         const fetchSkillsAndCertifications = async () => {
             try {
-                const skillsResponse = await axios.get('http://localhost:3000/api/skills');
+                const skillsResponse = await axios.get('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/skills');
                 setSkills(skillsResponse.data.map(skill => skill.skill_name));
 
-                const certificationsResponse = await axios.get('http://localhost:3000/api/certifications');
+                const certificationsResponse = await axios.get('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/certifications');
                 setCertifications(certificationsResponse.data.map(cert => cert.certification_name));
             } catch (error) {
                 console.error('Error fetching skills and certifications:', error);
@@ -102,7 +102,7 @@ const OnboardingForm = () => {
           }
 
           try {
-              await axios.post('http://localhost:3000/api/submit-candidate', formData, {
+              await axios.post('https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/submit-candidate', formData, {
                   headers: {
                       'Content-Type': 'multipart/form-data',
                   },

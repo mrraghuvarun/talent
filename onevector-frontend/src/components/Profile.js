@@ -12,7 +12,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/personalDetails/${userId}`);
+                const response = await axios.get(`https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/personalDetails/${userId}`);
                 setUserDetails(response.data);
             } catch (error) {
                 console.error('Error fetching user details:', error);
@@ -34,7 +34,7 @@ const Profile = () => {
 
     const handleDownloadResume = () => {
         try {
-            const resumeUrl = `http://localhost:3000/api/resume/${userDetails.personalDetails.id}`;
+            const resumeUrl = `https://jggetx2xqg.execute-api.us-east-1.amazonaws.com/dev/api/resume/${userDetails.personalDetails.id}`;
             window.open(resumeUrl, '_blank'); // Opens the resume in a new tab
         } catch (error) {
             alert('Failed to view resume');
